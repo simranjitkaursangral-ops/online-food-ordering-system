@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Payment Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; 
+            background: #f4f4f4;
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh;
+        }
+        .payment-form {
+            background: #fff;
+            padding: 24px 32px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px #0002;
+            width: 280px;
+        }
+        .payment-form h2 {
+            text-align: center;
+            margin-bottom: 18px;
+        }
+        .payment-form label {
+            display: block;
+            margin-top: 12px;
+            margin-bottom: 4px;
+        }
+        .payment-form input[type="text"], 
+        .payment-form select {
+            width: 100%;
+            padding: 5px 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .payment-form button, 
+        .payment-form .home-btn {
+            width: 100%;
+            margin-top: 14px;
+            padding: 8px 0;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .payment-form button[type="submit"] {
+            color: #fff;
+            background: #007bff;
+        }
+        .payment-form .home-btn {
+            background: #6c757d;
+            color: #fff;
+        }
+        .payment-form .success {
+            color: green;
+            font-size: 14px;
+            margin-top: 12px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form class="payment-form" id="paymentForm">
+        <h2>Payment Details</h2>
+        <label for="name">Name</label>
+        <input type="text" id="name" required>
+
+        <label for="address">Address</label>
+        <input type="text" id="address" required>
+
+        <label for="payment">Payment Method</label>
+        <select id="payment" required>
+            <option value="">--Select--</option>
+            <option value="Credit Card">Credit Card</option>
+            <option value="PayPal">PayPal</option>
+            <option value="UPI">UPI</option>
+            <option value="Cash on Delivery">Cash on Delivery</option>
+        </select>
+
+        <button type="submit">Submit</button>
+        <button type="button" class="home-btn" id="homeBtn">Back to Home Page</button>
+        <div class="success" id="successMsg" style="display:none;">Payment submitted!</div>
+    </form>
+    <script>
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const address = document.getElementById('address').value;
+            const payment = document.getElementById('payment').value;
+            if (name && address && payment) {
+                document.getElementById('successMsg').innerText = "Payment submitted!";
+                document.getElementById('successMsg').style.display = "block";
+                // Add backend interaction here if needed
+            } else {
+                document.getElementById('successMsg').innerText = "Please fill all the fields.";
+                document.getElementById('successMsg').style.display = "block";
+            }
+        });
+
+        document.getElementById('homeBtn').addEventListener('click', function() {
+            // By default, go to home page (root URL)
+            window.location.href = '/';
+        });
+    </script>
+</body>
+</html>
